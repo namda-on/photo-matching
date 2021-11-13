@@ -1,4 +1,4 @@
-import react from "react";
+import React from "react";
 
 interface TitleProps {
   name: string;
