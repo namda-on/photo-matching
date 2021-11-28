@@ -8,7 +8,7 @@ const Layout = ({ children }: LayoutProps) => {
   return (
     <div
       className={
-        "flex flex-col justify-center items-start pt-4 px-6 w-screen h-screen"
+        "flex flex-col justify-start items-center pt-4 px-11 w-screen h-screen"
       }
     >
       {children}
