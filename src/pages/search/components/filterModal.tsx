@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import CustomDropDown from "../../shared/components/dropdown";
-import Title from "./components/title";
-import Layout from "../../shared/layout";
-import { DropDownOption } from "../../shared/types";
+import CustomDropDown from "../../../shared/components/dropdown";
+import Title from "./title";
+import Layout from "../../../shared/layout";
+import { DropDownOption } from "../../../shared/types";
 
 const PHOTO_OPTIONS: DropDownOption[] = [
   { id: 1, optionName: "증명사진" },
@@ -12,11 +12,22 @@ const PHOTO_OPTIONS: DropDownOption[] = [
   { id: 5, optionName: "야외 스냅샷" },
 ];
 
-const FilterPage = () => {
+interface FilterPageProps {
+  toggleModal: () => void;
+}
+
+const FilterModal = ({ toggleModal }: FilterPageProps) => {
   const [toggleDropDown, setToggleDropDown] = useState(false);
+
+  const searchByFilter = () => {
+    toggleModal();
+  };
 
   return (
     <Layout>
+      <button className="flex w-80 h-4 justify-start" onClick={toggleModal}>
+        X
+      </button>
       <Title name="사진종류" />
       <article
         className={"relative flex-col justify-center items-center w-full h-16"}
@@ -33,8 +44,15 @@ const FilterPage = () => {
         </button>
         <CustomDropDown show={toggleDropDown} options={PHOTO_OPTIONS} />
       </article>
+
+      <button
+        className="flex justify-center items-center border-4 rounded-2xl bg-gray-200 mt-4 w-48 h-10"
+        onClick={searchByFilter}
+      >
+        <p>검색하기</p>
+      </button>
     </Layout>
   );
 };
 
-export default FilterPage;
+export default FilterModal;
