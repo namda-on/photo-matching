@@ -17,7 +17,7 @@ interface CardProps {
 const Card = ({ cardInfo }: CardProps) => {
   const { studioName, img, imgDescription, review, price } = cardInfo;
   return (
-    <li className="w-48 h-50">
+    <li className="flex items-center justify-center w-full h-50">
       <button className="flex flex-col border-2 rounded-2xl py-2 px-3">
         <div className="flex justify-center">
           <img

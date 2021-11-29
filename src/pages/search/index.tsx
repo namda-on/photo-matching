@@ -80,7 +80,7 @@ const SearchPage = () => {
             }}
           />
         </div>
-        <ul className="grid grid-cols-2 mt-4 gap-4 w-full px-4">
+        <ul className="grid grid-cols-2 mt-4 gap-4 w-full">
           {Cards.filter((card) => {
             if (selectedTab === 0) return true;
             else return card.section === selectedTab;
