@@ -3,6 +3,7 @@ import CustomDropDown from "../../../shared/components/dropdown";
 import Title from "./title";
 import Layout from "../../../shared/layout";
 import { DropDownOption } from "../../../shared/types";
+import HashTag from "../../../shared/components/hashtag";
 
 enum PhotoType {
   "사진종류" = "사진종류",
@@ -52,7 +53,7 @@ const FilterModal = ({ toggleModal }: FilterPageProps) => {
           X
         </button>
       </section>
-      <Title name="사진종류" />
+      <Title name="사진종류" bold={true} />
       <article
         className={
           "flex flex-col justify-center items-center rounded-2xl w-full mb-8 h-30"
@@ -75,13 +76,18 @@ const FilterModal = ({ toggleModal }: FilterPageProps) => {
         toggleDropdown={toggleDropDownHandler}
         setState={setPhotoType}
       />
-      <Title name="가격대" />
+      <Title name="가격대" bold={true} />
 
-      <Title name="해쉬태그" />
-
+      <Title name="해쉬태그" bold={true} />
+      {/* 선택된 해쉬태그 */}
+      <div className="flex w-full h-auto py-2">
+        <HashTag name="단아한" />
+      </div>
+      <Title name="추천 해쉬태그" bold={false} />
+      <div className="flex w-full h-40 p-4 bg-gray-100 rounded-xl border-2 border-gray-200"></div>
       <div className="flex justify-center w-full">
         <button
-          className="flex justify-center items-center border-4 rounded-2xl bg-gray-100 mt-4 w-48 h-10"
+          className="flex justify-center items-center border-2 rounded-2xl bg-gray-100 mt-4 w-48 h-10 "
           onClick={searchByFilter}
         >
           <p>검색하기</p>
