@@ -4,7 +4,7 @@ import Title from "./title";
 import Layout from "../../../shared/layout";
 import { DropDownOption } from "../../../shared/types";
 import HashTag from "../../../shared/components/hashtag";
-
+import Slider from "@mui/material/Slider";
 enum PhotoType {
   "사진종류" = "사진종류",
   "증명사진" = "증명사진",
@@ -31,6 +31,23 @@ const nullPosition = {
   y: 0,
   height: 0,
 };
+
+const formatThreeDigitRex = /\B(?=(\d{3})+(?!\d))/g;
+
+const formatNumber = (value: number) => {
+  return String(value).replace(formatThreeDigitRex, ",");
+};
+const getCostValueText = (value: number) => {
+  const formattedCost = formatNumber(value);
+  return `${formattedCost} 원`;
+};
+
+const costMarks = [
+  { value: 0, label: getCostValueText(0) },
+  { value: 20000, label: getCostValueText(20000) },
+  { value: 50000, label: getCostValueText(50000) },
+  { value: 100000, label: getCostValueText(100000) },
+];
 
 const FilterModal = ({ toggleModal }: FilterPageProps) => {
   const [toggleDropDown, setToggleDropDown] = useState(false);
@@ -77,6 +94,15 @@ const FilterModal = ({ toggleModal }: FilterPageProps) => {
         setState={setPhotoType}
       />
       <Title name="가격대" bold={true} />
+      <Slider
+        aria-label="Custom marks"
+        defaultValue={500000}
+        getAriaValueText={getCostValueText}
+        step={5000}
+        max={150000}
+        valueLabelDisplay="auto"
+        marks={costMarks}
+      />
 
       <Title name="해쉬태그" bold={true} />
       {/* 선택된 해쉬태그 */}
