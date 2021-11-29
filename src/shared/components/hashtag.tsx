@@ -33,9 +33,9 @@ const hexToRgb = (hex: string): any => {
 const getTextColor = (hexCode: string) => {
   const RGBColor = hexToRgb(hexCode);
   const brightness = Math.round(
-    (parseInt(RGBColor[0]) * 299 +
-      parseInt(RGBColor[1]) * 587 +
-      parseInt(RGBColor[2]) * 114) /
+    (parseInt(RGBColor.r) * 299 +
+      parseInt(RGBColor.g) * 587 +
+      parseInt(RGBColor.b) * 114) /
       1000
   );
   const textColor = brightness > 125 ? "black" : "white";
@@ -54,7 +54,7 @@ const HashTag = ({ name, color }: HashtagProps) => {
   return (
     <div
       className={
-        "flex items-center justify-center w-auto h-6 px-3 py-1 rounded-xl cursor-pointer text-sm"
+        "flex items-center justify-center w-auto h-6 px-3 py-1 rounded-xl cursor-pointer text-sm mr-5"
       }
       style={hashTagStyle}
     >

@@ -5,6 +5,7 @@ import Layout from "../../../shared/layout";
 import { DropDownOption } from "../../../shared/types";
 import HashTag from "../../../shared/components/hashtag";
 import Slider from "@mui/material/Slider";
+import { HashTags } from "../hashTags";
 enum PhotoType {
   "사진종류" = "사진종류",
   "증명사진" = "증명사진",
@@ -43,7 +44,6 @@ const getCostValueText = (value: number) => {
 };
 
 const costMarks = [
-  { value: 0, label: getCostValueText(0) },
   { value: 20000, label: getCostValueText(20000) },
   { value: 50000, label: getCostValueText(50000) },
   { value: 100000, label: getCostValueText(100000) },
@@ -52,9 +52,14 @@ const costMarks = [
 const FilterModal = ({ toggleModal }: FilterPageProps) => {
   const [toggleDropDown, setToggleDropDown] = useState(false);
   const [photoType, setPhotoType] = useState<PhotoType>(PhotoType.사진종류);
+  const [costValue, setCostValue] = useState([0, 50000]);
   const photoSelect = useRef<HTMLButtonElement>(null);
   const searchByFilter = () => {
     toggleModal();
+  };
+
+  const handleCostSlideChange = (event: Event, newValue: number | number[]) => {
+    setCostValue(newValue as number[]);
   };
 
   const toggleDropDownHandler = () => {
@@ -96,12 +101,15 @@ const FilterModal = ({ toggleModal }: FilterPageProps) => {
       <Title name="가격대" bold={true} />
       <Slider
         aria-label="Custom marks"
-        defaultValue={500000}
+        defaultValue={50000}
         getAriaValueText={getCostValueText}
+        onChange={handleCostSlideChange}
         step={5000}
-        max={150000}
+        max={180000}
+        value={costValue}
         valueLabelDisplay="auto"
         marks={costMarks}
+        color="secondary"
       />
 
       <Title name="해쉬태그" bold={true} />
@@ -110,7 +118,11 @@ const FilterModal = ({ toggleModal }: FilterPageProps) => {
         <HashTag name="단아한" />
       </div>
       <Title name="추천 해쉬태그" bold={false} />
-      <div className="flex w-full h-40 p-4 bg-gray-100 rounded-xl border-2 border-gray-200"></div>
+      <div className="flex flex-wrap w-full h-40 p-4 bg-gray-100 rounded-xl border-2 border-gray-200">
+        {HashTags.map((hashTag) => (
+          <HashTag key={`tag${hashTag}`} name={hashTag} />
+        ))}
+      </div>
       <div className="flex justify-center w-full">
         <button
           className="flex justify-center items-center border-2 rounded-2xl bg-gray-100 mt-4 w-48 h-10 "

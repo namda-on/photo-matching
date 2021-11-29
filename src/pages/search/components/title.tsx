@@ -6,7 +6,6 @@ interface TitleProps {
 }
 
 const Title = ({ name, bold }: TitleProps) => {
-  console.log(bold);
   return (
     <div className="flex w-auto h-10 my-2 items-center justify-start">
       <div
