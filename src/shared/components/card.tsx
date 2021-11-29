@@ -1,7 +1,9 @@
 import React, { FC } from "react";
 
 export interface CardInfo {
+  id: number;
   studioName: string;
+  section: number;
   img?: any;
   imgDescription?: string;
   review: number; //5점만점에
@@ -15,7 +17,7 @@ interface CardProps {
 const Card = ({ cardInfo }: CardProps) => {
   const { studioName, img, imgDescription, review, price } = cardInfo;
   return (
-    <li>
+    <li className="w-48 h-50">
       <button className="flex flex-col border-2 rounded-2xl py-2 px-3">
         <div className="flex justify-center">
           <img

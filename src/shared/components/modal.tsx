@@ -13,7 +13,7 @@ function Modal({ show, children, toggleModal }: ModalProps) {
 
   return (
     <section
-      className="fixed left-0 right-0 flex items-center justify-center w-screen h-screen bg-black bg-opacity-40"
+      className="fixed left-0 right-0 flex items-center justify-center w-screen h-screen bg-white bg-opacity-100"
       onClick={toggleModal}
     >
       <div onClick={(e) => e.stopPropagation()}>{children}</div>

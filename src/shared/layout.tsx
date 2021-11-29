@@ -11,7 +11,9 @@ const Layout = ({ children }: LayoutProps) => {
         "flex flex-col justify-start items-center pt-4 px-11 w-screen h-screen"
       }
     >
-      {children}
+      <div className="flex flex-col w-96 h-full justify-start items-start">
+        {children}
+      </div>
     </div>
   );
 };
