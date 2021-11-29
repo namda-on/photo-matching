@@ -47,12 +47,13 @@ const CustomDropDown = ({
           style={positionStyle}
         >
           <section className="flex flex-col w-full h-full">
-            {options.map((option) => {
+            {options.map((option, idx) => {
               return (
                 <button
-                  className={
-                    "flex cursor-pointer align-middle justify-center h-auto w-full py-2 border-b-2 border-solid border-gray-200 hover:bg-white	"
-                  }
+                  key={`photoType${option.optionName}`}
+                  className={`flex cursor-pointer align-middle justify-center h-auto w-full py-2 border-solid border-gray-200 hover:bg-white	${
+                    idx === options.length - 1 ? "" : "border-b-2"
+                  }`}
                   onClick={() => {
                     setDropdownValue(option.id);
                   }}
