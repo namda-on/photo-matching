@@ -16,7 +16,7 @@ const Card = ({ cardInfo }: CardProps) => {
   const { studioName, img, imgDescription, review, price } = cardInfo;
   return (
     <li>
-      <div className="flex flex-col border-2 rounded-2xl">
+      <button className="flex flex-col border-2 rounded-2xl py-2 px-3">
         <div className="flex justify-center">
           <img
             className="w-32 h-32 rounded-xl"
@@ -25,12 +25,25 @@ const Card = ({ cardInfo }: CardProps) => {
           />
         </div>
         {/* text Container  */}
-        <div className="flex flex-col justify-between items-center">
-          <div className="flex justify-center items-center">{studioName} </div>
-          <div className="flex justify-center items-center">{price} 원 </div>
-          <div className="flex justify-center items-center">{review} / 5</div>
+        <div className="flex flex-col justify-between items-center mt-2">
+          <div className="flex justify-start items-start text-sm">
+            {studioName}
+          </div>
+          <div className="flex justify-start items-start text-xs">
+            {price} 원{" "}
+          </div>
+          <div className="flex justify-start items-center text-xs">
+            <img
+              className="w-2 h-2 mr-1"
+              src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png"
+              alt="star"
+            />
+            <div className="flex justify-center items-center text-xs">
+              {review} / 5
+            </div>
+          </div>
         </div>
-      </div>
+      </button>
     </li>
   );
 };
