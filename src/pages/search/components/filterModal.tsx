@@ -40,7 +40,7 @@ const formatNumber = (value: number) => {
 };
 const getCostValueText = (value: number) => {
   const formattedCost = formatNumber(value);
-  return `${formattedCost} 원`;
+  return `${formattedCost}`;
 };
 
 const costMarks = [
@@ -70,28 +70,30 @@ const FilterModal = ({ toggleModal }: FilterPageProps) => {
 
   return (
     <Layout>
-      <div className="px-5 pt-4 overflow-hidden">
-        <section className="flex w-full h-4 justify-end mb-6">
-          <button className="text-xl" onClick={toggleModal}>
-            X
-          </button>
-        </section>
+      <section className="flex w-full h-4 justify-end mt-2 mb-2">
+        <button className="text-xl mr-2" onClick={toggleModal}>
+          X
+        </button>
+      </section>
+      <div className="flex flex-col px-4 w-full">
         <Title name="사진종류" bold={true} />
-        <article
-          className={
-            "flex flex-col justify-center items-center rounded-2xl w-full mb-8 h-30"
-          }
-        >
-          <button
+        <div className="flex justify-center">
+          <article
             className={
-              "flex justify-center items-center border-2 border-gray-200 rounded-2xl bg-gray-100 w-80 h-10"
+              "flex justify-center items-center rounded-2xl w-64 mb-2 h-30"
             }
-            onClick={toggleDropDownHandler}
-            ref={photoSelect}
           >
-            <p>{photoType}</p>
-          </button>
-        </article>
+            <button
+              className={
+                "border-2 border-gray-200 rounded-2xl bg-gray-100 w-full h-10"
+              }
+              onClick={toggleDropDownHandler}
+              ref={photoSelect}
+            >
+              <p>{photoType}</p>
+            </button>
+          </article>
+        </div>
         <CustomDropDown
           position={photoSelectPosition || nullPosition}
           show={toggleDropDown}
@@ -101,9 +103,9 @@ const FilterModal = ({ toggleModal }: FilterPageProps) => {
         />
         <Title name="가격대" bold={true} />
         <Slider
-          aria-label="Custom marks"
           defaultValue={50000}
           getAriaValueText={getCostValueText}
+          aria-label="Small"
           onChange={handleCostSlideChange}
           step={5000}
           max={180000}

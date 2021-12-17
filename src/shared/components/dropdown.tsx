@@ -43,7 +43,7 @@ const CustomDropDown = ({
     <>
       {show ? (
         <div
-          className={`absolute h-auto w-80 bg-gray-100 border-2 border-gray-200 rounded-2xl overflow-hidden z-10`}
+          className={`absolute h-auto w-64 bg-gray-100 border-2 border-gray-200 rounded-2xl overflow-hidden z-10`}
           style={positionStyle}
         >
           <section className="flex flex-col w-full h-full">

@@ -5,20 +5,6 @@ interface HashtagProps {
   color?: string;
 }
 
-const isValidColor = (color: string) => {
-  const reg = /^#[0-9A-F]{6}$/i;
-  const result = reg.exec(color);
-  if (result === null) return false;
-  return true;
-};
-
-const getRandomColor = (): any => {
-  const color = `#${Math.round(Math.random() * 0xffffff).toString(16)}`;
-  const isValid = isValidColor(color);
-  if (isValid) return color;
-  return getRandomColor();
-};
-
 const hexToRgb = (hex: string): any => {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   return result

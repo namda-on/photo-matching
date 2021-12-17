@@ -94,7 +94,7 @@ const SearchPage = () => {
             if (selectedTab === 0) return true;
             else return card.section === selectedTab;
           }).map((card) => (
-            <Card cardInfo={card} />
+            <Card key={card.id} cardInfo={card} />
           ))}
         </ul>
       </Layout>
