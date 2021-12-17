@@ -3,6 +3,7 @@ import React from "react";
 interface HashtagProps {
   name: string;
   color?: string;
+  onClick?: () => void;
 }
 
 const hexToRgb = (hex: string): any => {
@@ -28,7 +29,7 @@ const getTextColor = (hexCode: string) => {
   return textColor;
 };
 
-const HashTag = ({ name, color }: HashtagProps) => {
+const HashTag = ({ name, color, onClick }: HashtagProps) => {
   const hashTagStyle: React.CSSProperties = {
     backgroundColor: color ? color : "#FBEAEB",
     color: color ? getTextColor(color) : "#2E3C7E",
@@ -40,6 +41,7 @@ const HashTag = ({ name, color }: HashtagProps) => {
         "flex items-center justify-center w-auto h-6 px-3 py-1 rounded-xl cursor-pointer text-sm mr-5 border-[1px]"
       }
       style={hashTagStyle}
+      onClick={onClick ? onClick : undefined}
     >
       {name}
     </div>

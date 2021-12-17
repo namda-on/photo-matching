@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import CustomDropDown from "../../../shared/components/dropdown";
 import Title from "./title";
 import Layout from "../../../shared/layout";
@@ -53,6 +53,10 @@ const FilterModal = ({ toggleModal }: FilterPageProps) => {
   const [toggleDropDown, setToggleDropDown] = useState(false);
   const [photoType, setPhotoType] = useState<PhotoType>(PhotoType.사진종류);
   const [costValue, setCostValue] = useState([0, 50000]);
+  const [selectedHashtag, setSelectedHashtag] = useState<string[]>([]);
+  const [candidateHashtag, setCandidateHashtag] = useState<string[]>(HashTags);
+  const [warning, setWarning] = useState<boolean>(false);
+
   const photoSelect = useRef<HTMLButtonElement>(null);
   const searchByFilter = () => {
     toggleModal();
@@ -66,10 +70,38 @@ const FilterModal = ({ toggleModal }: FilterPageProps) => {
     setToggleDropDown((prevStatus) => !prevStatus);
   };
 
+  useEffect(() => {}, [costValue]);
+
   const photoSelectPosition = photoSelect.current?.getBoundingClientRect();
 
+  const addToSelectHashtag = (hashtagName: string) => {
+    if (selectedHashtag.length >= 3) {
+      setWarning(true);
+      return;
+    }
+    setSelectedHashtag((prev) => [...prev, hashtagName]);
+    setCandidateHashtag((candidateHashtags) => {
+      return candidateHashtags.filter((hashTag) => hashTag !== hashtagName);
+    });
+  };
+
+  const cancelSelect = (hashtagName: string) => {
+    setSelectedHashtag((prev) => {
+      return prev.filter((hashTag) => hashTag !== hashtagName);
+    });
+    setCandidateHashtag((prev) => [...prev, hashtagName]);
+  };
+
+  useEffect(() => {
+    if (warning) {
+      setTimeout(() => {
+        setWarning(false);
+      }, 1000);
+    }
+  }, [warning]);
+
   return (
-    <Layout>
+    <Layout relative={true}>
       <section className="flex w-full h-4 justify-end mt-2 mb-2">
         <button className="text-xl mr-2" onClick={toggleModal}>
           X
@@ -105,7 +137,6 @@ const FilterModal = ({ toggleModal }: FilterPageProps) => {
         <Slider
           defaultValue={50000}
           getAriaValueText={getCostValueText}
-          aria-label="Small"
           onChange={handleCostSlideChange}
           step={5000}
           max={180000}
@@ -115,15 +146,45 @@ const FilterModal = ({ toggleModal }: FilterPageProps) => {
           color="secondary"
         />
 
-        <Title name="해쉬태그" bold={true} />
-        {/* 선택된 해쉬태그 */}
+        <Title name="해시태그" bold={true} />
+        {/* 선택된 해시태그 */}
         <div className="flex w-full h-auto py-2">
-          <HashTag name="단아한" />
+          {selectedHashtag.length === 0 ? (
+            <p className="h-6 text-sm">해시태그를 선택해주세요 </p>
+          ) : (
+            selectedHashtag.map((hashTag) => (
+              <HashTag
+                key={`tag${hashTag}`}
+                name={hashTag}
+                onClick={() => {
+                  cancelSelect(hashTag);
+                }}
+              />
+            ))
+          )}
         </div>
-        <Title name="추천 해쉬태그" bold={false} />
+        <div className="flex ">
+          <Title name="추천 해시태그" bold={false} smallSpace={true} />
+          {warning ? (
+            <div className="flex items-center h-full">
+              <div className="ml-2 text-xs text-yellow-700 ">
+                해시태그는 최대 3개까지 선택할 수 있습니다{" "}
+              </div>
+            </div>
+          ) : (
+            <></>
+          )}
+        </div>
+
         <div className="flex flex-wrap w-full h-40 p-4 bg-gray-100 rounded-xl border-2 border-gray-200">
-          {HashTags.map((hashTag) => (
-            <HashTag key={`tag${hashTag}`} name={hashTag} />
+          {candidateHashtag.map((hashTag) => (
+            <HashTag
+              key={`tag${hashTag}`}
+              name={hashTag}
+              onClick={() => {
+                addToSelectHashtag(hashTag);
+              }}
+            />
           ))}
         </div>
         <div className="flex justify-center w-full">
