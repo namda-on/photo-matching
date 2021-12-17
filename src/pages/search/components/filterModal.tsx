@@ -70,66 +70,68 @@ const FilterModal = ({ toggleModal }: FilterPageProps) => {
 
   return (
     <Layout>
-      <section className="flex w-full h-4 justify-end mb-6">
-        <button className="text-xl" onClick={toggleModal}>
-          X
-        </button>
-      </section>
-      <Title name="사진종류" bold={true} />
-      <article
-        className={
-          "flex flex-col justify-center items-center rounded-2xl w-full mb-8 h-30"
-        }
-      >
-        <button
+      <div className="px-5 pt-4 overflow-hidden">
+        <section className="flex w-full h-4 justify-end mb-6">
+          <button className="text-xl" onClick={toggleModal}>
+            X
+          </button>
+        </section>
+        <Title name="사진종류" bold={true} />
+        <article
           className={
-            "flex justify-center items-center border-2 border-gray-200 rounded-2xl bg-gray-100 w-80 h-10"
+            "flex flex-col justify-center items-center rounded-2xl w-full mb-8 h-30"
           }
-          onClick={toggleDropDownHandler}
-          ref={photoSelect}
         >
-          <p>{photoType}</p>
-        </button>
-      </article>
-      <CustomDropDown
-        position={photoSelectPosition || nullPosition}
-        show={toggleDropDown}
-        options={PHOTO_OPTIONS}
-        toggleDropdown={toggleDropDownHandler}
-        setState={setPhotoType}
-      />
-      <Title name="가격대" bold={true} />
-      <Slider
-        aria-label="Custom marks"
-        defaultValue={50000}
-        getAriaValueText={getCostValueText}
-        onChange={handleCostSlideChange}
-        step={5000}
-        max={180000}
-        value={costValue}
-        valueLabelDisplay="auto"
-        marks={costMarks}
-        color="secondary"
-      />
+          <button
+            className={
+              "flex justify-center items-center border-2 border-gray-200 rounded-2xl bg-gray-100 w-80 h-10"
+            }
+            onClick={toggleDropDownHandler}
+            ref={photoSelect}
+          >
+            <p>{photoType}</p>
+          </button>
+        </article>
+        <CustomDropDown
+          position={photoSelectPosition || nullPosition}
+          show={toggleDropDown}
+          options={PHOTO_OPTIONS}
+          toggleDropdown={toggleDropDownHandler}
+          setState={setPhotoType}
+        />
+        <Title name="가격대" bold={true} />
+        <Slider
+          aria-label="Custom marks"
+          defaultValue={50000}
+          getAriaValueText={getCostValueText}
+          onChange={handleCostSlideChange}
+          step={5000}
+          max={180000}
+          value={costValue}
+          valueLabelDisplay="auto"
+          marks={costMarks}
+          color="secondary"
+        />
 
-      <Title name="해쉬태그" bold={true} />
-      {/* 선택된 해쉬태그 */}
-      <div className="flex w-full h-auto py-2">
-        <HashTag name="단아한" />
-      </div>
-      <Title name="추천 해쉬태그" bold={false} />
-      <div className="flex flex-wrap w-full h-40 p-4 bg-gray-100 rounded-xl border-2 border-gray-200">
-        {HashTags.map((hashTag) => (
-          <HashTag key={`tag${hashTag}`} name={hashTag} />
-        ))}
-      </div>
-      <div className="flex justify-center w-full">
-        <button
-          className="flex justify-center items-center border-2 rounded-2xl bg-gray-100 mt-4 w-48 h-10 "
-          onClick={searchByFilter}
-        >
-          <p>검색하기</p>
-        </button>
+        <Title name="해쉬태그" bold={true} />
+        {/* 선택된 해쉬태그 */}
+        <div className="flex w-full h-auto py-2">
+          <HashTag name="단아한" />
+        </div>
+        <Title name="추천 해쉬태그" bold={false} />
+        <div className="flex flex-wrap w-full h-40 p-4 bg-gray-100 rounded-xl border-2 border-gray-200">
+          {HashTags.map((hashTag) => (
+            <HashTag key={`tag${hashTag}`} name={hashTag} />
+          ))}
+        </div>
+        <div className="flex justify-center w-full">
+          <button
+            className="flex justify-center items-center border-2 rounded-2xl bg-gray-100 mt-4 w-48 h-10 "
+            onClick={searchByFilter}
+          >
+            <p>검색하기</p>
+          </button>
+        </div>
       </div>
     </Layout>
   );

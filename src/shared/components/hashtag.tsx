@@ -43,18 +43,15 @@ const getTextColor = (hexCode: string) => {
 };
 
 const HashTag = ({ name, color }: HashtagProps) => {
-  const randomColorCode = getRandomColor();
-  const textColor = getTextColor(randomColorCode);
-
   const hashTagStyle: React.CSSProperties = {
-    backgroundColor: color ?? randomColorCode,
-    color: textColor,
+    backgroundColor: color ? color : "#FBEAEB",
+    color: color ? getTextColor(color) : "#2E3C7E",
   };
 
   return (
     <div
       className={
-        "flex items-center justify-center w-auto h-6 px-3 py-1 rounded-xl cursor-pointer text-sm mr-5"
+        "flex items-center justify-center w-auto h-6 px-3 py-1 rounded-xl cursor-pointer text-sm mr-5 border-[1px]"
       }
       style={hashTagStyle}
     >
