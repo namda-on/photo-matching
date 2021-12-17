@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Card from "../../shared/components/card";
 import Modal from "../../shared/components/modal";
 import Layout from "../../shared/layout";
@@ -14,6 +14,12 @@ const SearchPage = () => {
   const toggleModal = () => {
     setShowFilterModal((prevStatus) => !prevStatus);
   };
+
+  useEffect(() => {
+    showFilterModal
+      ? (document.body.style.overflow = "hidden")
+      : (document.body.style.overflow = "unset");
+  }, [showFilterModal]);
 
   return (
     <>
@@ -38,7 +44,10 @@ const SearchPage = () => {
           </div>
           <div className="flex w-3/5 items-center justify-start">검색하기</div>
         </button>
-        <div className="flex justify-between border-4  bg-gray-200 mt-4 w-full py-1 rounded-2xl ">
+        <div
+          id="tab_container"
+          className="flex justify-between border-4  bg-gray-200 mt-4 w-full py-1 rounded-2xl "
+        >
           <CustomTab
             id={0}
             title="All"
