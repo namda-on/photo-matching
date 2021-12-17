@@ -13,7 +13,7 @@ const CustomTab = ({ id, title, selectedTab, onClick }: TabProps) => {
   return (
     <button
       className={
-        "flex w-1/4 items-center text-sm justify-center rounded-xl p-1 " +
+        "flex w-1/4 items-center text-sm justify-center rounded-xl py-1 " +
         backGroundColor
       }
       onClick={onClick}

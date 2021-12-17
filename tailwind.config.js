@@ -2,7 +2,9 @@ module.exports = {
   purge: ["./src/**/*.{ts,tsx}", "./public/index.html"],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    fontFamily: {
+      sans: ["Do Hyeon", "sans-serif"],
+    },
   },
   variants: {
     extend: {},
