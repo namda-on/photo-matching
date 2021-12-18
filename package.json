@@ -31,10 +31,11 @@
     "tailwindcss": "npm:@tailwindcss/postcss7-compat"
   },
   "scripts": {
-    "start": "craco start",
+    "start": "TAILWIND_MODE=watch PORT=4000 craco start",
     "build": "craco build",
     "test": "craco test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "yarn build && firebase deploy"
   },
   "eslintConfig": {
     "extends": [
