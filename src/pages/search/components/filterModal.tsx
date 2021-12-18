@@ -1,31 +1,14 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { SetStateAction, useEffect, useRef, useState } from "react";
 import CustomDropDown from "../../../shared/components/dropdown";
 import Title from "./title";
 import Layout from "../../../shared/layout";
-import { DropDownOption } from "../../../shared/types";
 import HashTag from "../../../shared/components/hashtag";
 import Slider from "@mui/material/Slider";
 import { HashTags } from "../hashTags";
-enum PhotoType {
-  "사진종류" = "사진종류",
-  "증명사진" = "증명사진",
-  "프로필 사진" = "프로필 사진",
-  "바디 프로필" = "바디 프로필",
-  "스냅샷" = "스냅샷",
-  "야외 스냅샷" = "야외 스냅샷",
-}
+import { FilterState } from "..";
+import { PHOTO_OPTIONS } from "../../../shared/constants/constants";
 
-const PHOTO_OPTIONS: DropDownOption[] = [
-  { id: PhotoType.증명사진, optionName: "증명사진" },
-  { id: PhotoType.스냅샷, optionName: "스냅샷" },
-  { id: PhotoType["프로필 사진"], optionName: "프로필 사진" },
-  { id: PhotoType["바디 프로필"], optionName: "바디 프로필" },
-  { id: PhotoType["야외 스냅샷"], optionName: "야외 스냅샷" },
-];
-
-interface FilterPageProps {
-  toggleModal: () => void;
-}
+const TAB_ID = ["", "증명사진", "프로필", "바디 프로필", "스냅샷"];
 
 const nullPosition = {
   x: 0,
@@ -49,9 +32,14 @@ const costMarks = [
   { value: 100000, label: getCostValueText(100000) },
 ];
 
-const FilterModal = ({ toggleModal }: FilterPageProps) => {
+interface FilterPageProps {
+  toggleModal: () => void;
+  setFilterCondition: React.Dispatch<SetStateAction<FilterState | null>>;
+}
+
+const FilterModal = ({ toggleModal, setFilterCondition }: FilterPageProps) => {
   const [toggleDropDown, setToggleDropDown] = useState(false);
-  const [photoType, setPhotoType] = useState<PhotoType>(PhotoType.사진종류);
+  const [photoType, setPhotoType] = useState<number>(0);
   const [costValue, setCostValue] = useState([0, 50000]);
   const [selectedHashtag, setSelectedHashtag] = useState<string[]>([]);
   const [candidateHashtag, setCandidateHashtag] = useState<string[]>(HashTags);
@@ -59,6 +47,11 @@ const FilterModal = ({ toggleModal }: FilterPageProps) => {
 
   const photoSelect = useRef<HTMLButtonElement>(null);
   const searchByFilter = () => {
+    setFilterCondition({
+      photoType,
+      priceRange: costValue,
+      hashTags: selectedHashtag,
+    });
     toggleModal();
   };
 
@@ -96,7 +89,7 @@ const FilterModal = ({ toggleModal }: FilterPageProps) => {
     if (warning) {
       setTimeout(() => {
         setWarning(false);
-      }, 1000);
+      }, 800);
     }
   }, [warning]);
 
@@ -122,7 +115,7 @@ const FilterModal = ({ toggleModal }: FilterPageProps) => {
               onClick={toggleDropDownHandler}
               ref={photoSelect}
             >
-              <p>{photoType}</p>
+              <p>{photoType === 0 ? "사진 종류" : TAB_ID[photoType]}</p>
             </button>
           </article>
         </div>
@@ -163,11 +156,11 @@ const FilterModal = ({ toggleModal }: FilterPageProps) => {
             ))
           )}
         </div>
-        <div className="flex ">
+        <div className="flex w-full items-center ">
           <Title name="추천 해시태그" bold={false} smallSpace={true} />
           {warning ? (
-            <div className="flex items-center h-full">
-              <div className="ml-2 text-xs text-yellow-700 ">
+            <div className="animate-shake">
+              <div className=" py-1 ml-2 text-xs text-yellow-700 ">
                 해시태그는 최대 3개까지 선택할 수 있습니다{" "}
               </div>
             </div>

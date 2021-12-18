@@ -11,7 +11,7 @@ const Title = ({ name, bold, smallSpace }: TitleProps) => {
     <div
       className={
         smallSpace
-          ? "flex w-auto h-10 my-1 mr-2 items-center justify-start"
+          ? "flex w-auto h-8 mt-1 mr-2 items-center justify-start"
           : "flex w-auto h-10 my-2 items-center justify-start"
       }
     >
