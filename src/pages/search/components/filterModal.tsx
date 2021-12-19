@@ -68,7 +68,7 @@ const FilterModal = ({ toggleModal, setFilterCondition }: FilterPageProps) => {
   const photoSelectPosition = photoSelect.current?.getBoundingClientRect();
 
   const addToSelectHashtag = (hashtagName: string) => {
-    if (selectedHashtag.length >= 3) {
+    if (selectedHashtag.length >= 2) {
       setWarning(true);
       return;
     }
@@ -161,7 +161,7 @@ const FilterModal = ({ toggleModal, setFilterCondition }: FilterPageProps) => {
           {warning ? (
             <div className="animate-shake">
               <div className=" py-1 ml-2 text-xs text-yellow-700 ">
-                해시태그는 최대 3개까지 선택할 수 있습니다{" "}
+                해시태그는 최대 2개까지 선택할 수 있습니다{" "}
               </div>
             </div>
           ) : (

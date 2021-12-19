@@ -116,11 +116,11 @@ const SearchPage = () => {
               const costCondition =
                 card.price >= priceRange[0] && card.price <= priceRange[1];
               const hashTagCondition =
-                hashTags &&
-                card.hashTags &&
-                card.hashTags.filter((hashTag) => hashTags.includes(hashTag))
-                  .length >= 1;
-              const photoTypeCondition = card.section === photoType;
+                !hashTags ||
+                (hashTags &&
+                  card.hashTags?.some((hashTag) => hashTags.includes(hashTag)));
+              const photoTypeCondition =
+                photoType === 0 || card.section === photoType;
               return costCondition && hashTagCondition && photoTypeCondition;
             } else return card.section === selectedTab;
           }).map((card) => (
