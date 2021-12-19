@@ -40,8 +40,8 @@ const HashTag = ({ name, color, onClick, small }: HashtagProps) => {
     <div
       className={
         small
-          ? "flex items-center justify-center w-auto h-4 px-[6px] py-1 rounded-xl cursor-pointer text-xs mr-1 border-[1px]"
-          : "flex items-center justify-center w-auto h-6 px-3 py-1 rounded-xl cursor-pointer text-sm mr-5 border-[1px]"
+          ? "flex items-center justify-center w-auto h-4 px-2 py-1 rounded-xl cursor-pointer text-xs mr-1 border-hashtag"
+          : "flex items-center justify-center w-auto h-6 px-3 py-1 rounded-xl cursor-pointer text-sm mr-5 border-hashtag"
       }
       style={hashTagStyle}
       onClick={onClick ? onClick : undefined}

@@ -1,7 +1,6 @@
 module.exports = {
-  mode: "jit",
-  purge: ["./src/**/*.{ts,tsx}", "./public/index.html"],
-  darkMode: false, // or 'media' or 'class'
+  purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
+  darkMode: false,
   theme: {
     fontFamily: {
       sans: ["Do Hyeon", "sans-serif"],
@@ -11,9 +10,14 @@ module.exports = {
       layout: "22rem",
       100: "100%",
     },
+
     extend: {
+      mt: { card: "4px" },
       animation: {
         shake: "shake 1s ease-in-out infinite",
+      },
+      colors: {
+        customGray: "#757575",
       },
       keyframes: {
         shake: {

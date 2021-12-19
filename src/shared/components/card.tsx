@@ -51,7 +51,7 @@ const Card = ({ cardInfo }: CardProps) => {
         (window as any).JSBridge?.showMessageInNative(id);
       }}
     >
-      <button className="flex flex-col border-2 rounded-2xl py-2 px-[11px] h-full">
+      <button className="flex flex-col border-2 rounded-2xl py-2 px-2 h-full">
         <div className="flex w-auto h-32 max-w-card overflow-hidden justify-center rounded-xl">
           <img className="" src={img} alt={imgDescription} />
         </div>
@@ -70,13 +70,13 @@ const Card = ({ cardInfo }: CardProps) => {
               </div>
             </div>
           </div>
-          <div className="flex justify-start items-start text-xs text-[#757575]">
+          <div className="flex justify-start items-start text-xs text-customGray">
             {address}{" "}
           </div>
-          <div className="flex justify-start items-start text-xs text-[#757575]">
+          <div className="flex justify-start items-start text-xs text-customGray">
             {getPhotoType(section)}{" "}
           </div>
-          <div className="flex justify-start items-start text-xs mt-[4px]">
+          <div className="flex justify-start items-start text-xs mt-card">
             {hashTags?.map((hashTag) => (
               <HashTag small={true} key={`hash${hashTag}`} name={hashTag} />
             ))}

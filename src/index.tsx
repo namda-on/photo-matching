@@ -1,9 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ReactDOM from "react-dom";
-import "./shared/global.css";
 import MainPage from "./pages/main";
 import SearchPage from "./pages/search";
+import "./shared/global.css";
 
 const App = () => {
   return (
