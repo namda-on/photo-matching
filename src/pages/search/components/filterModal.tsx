@@ -176,6 +176,7 @@ const FilterModal = ({ toggleModal, setFilterCondition }: FilterPageProps) => {
             <HashTag
               key={`tag${hashTag}`}
               name={hashTag}
+              small={true}
               onClick={() => {
                 addToSelectHashtag(hashTag);
               }}
