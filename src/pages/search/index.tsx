@@ -58,21 +58,21 @@ const SearchPage = () => {
             id="filter_condition"
             className="flex justify-center items-center   rounded-2xl bg-gray-100 mt-4 w-full h-10"
           >
-            <div className="ml-1 px-3 text-sm border-r-2 border-gray-400">
+            <div className="ml-1 px-2 text-sm border-r-2 border-gray-400">
               {PHOTO_OPTIONS.filter(
                 (option) => option.id === filterCondition.photoType
               ).map((option) => (
                 <p key={`option${option.id}`}>{option.optionName}</p>
               ))}
             </div>
-            <div className="ml-4 px-3 text-sm border-r-2 border-gray-400">
+            <div className="px-2 text-sm border-r-2 border-gray-400">
               가격 :
               {" " +
                 filterCondition.priceRange[0] +
                 "~" +
                 filterCondition.priceRange[1]}
             </div>
-            <div className="flex px-3">
+            <div className="flex px-2">
               {filterCondition.hashTags?.map((hashtag) => (
                 <HashTag
                   key={`hashtag${hashtag}`}
@@ -81,7 +81,9 @@ const SearchPage = () => {
                 />
               ))}
             </div>
-            <button onClick={deleteCondition}>x</button>
+            <button className="mr-2" onClick={deleteCondition}>
+              x
+            </button>
           </div>
         ) : (
           <>
