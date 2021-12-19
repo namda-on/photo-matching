@@ -42,7 +42,7 @@ const CustomDropDown = ({
     toggleDropdown();
   };
   //
-  const className = `absolute h-auto w-64 bg-gray-100 border-2 border-gray-200 rounded-2xl overflow-hidden z-10 left-[${positionX}px] top-[${positionY}px]`;
+  const className = `flex justify-center w-64 h-auto bg-gray-100 border-2 border-gray-200 rounded-2xl overflow-hidden z-10 `;
 
   return show ? (
     <div className={className}>

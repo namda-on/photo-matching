@@ -119,13 +119,15 @@ const FilterModal = ({ toggleModal, setFilterCondition }: FilterPageProps) => {
             </button>
           </article>
         </div>
-        <CustomDropDown
-          position={photoSelectPosition || nullPosition}
-          show={toggleDropDown}
-          options={PHOTO_OPTIONS}
-          toggleDropdown={toggleDropDownHandler}
-          setState={setPhotoType}
-        />
+        <div className="flex justify-center">
+          <CustomDropDown
+            position={photoSelectPosition || nullPosition}
+            show={toggleDropDown}
+            options={PHOTO_OPTIONS}
+            toggleDropdown={toggleDropDownHandler}
+            setState={setPhotoType}
+          />
+        </div>
         <Title name="가격대" bold={true} />
         <Slider
           defaultValue={50000}
